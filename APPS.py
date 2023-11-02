@@ -9,7 +9,7 @@ import streamlit as st
 raw_csv_url = 'https://raw.githubusercontent.com/Gill817/INFLUENZA_APP/main/VIW_FNT.csv'
 
 # Loading the data
-df = pd.read_csv(raw_csv_url, error_bad_lines=False)
+df = pd.read_csv(raw_csv_url, on_bad_lines=handle_bad_line)
 min_year = df['ISO_YEAR'].min()
 
 
