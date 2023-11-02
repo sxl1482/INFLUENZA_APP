@@ -27,8 +27,9 @@ response = requests.get(raw_csv_url)
 if response.status_code == 200:
   filtered_text = filter_and_fix_lines(response.text)
   df = pd.read_csv(io.StringIO(filtered_text))
-else:
-  st.error("Failed to download the data. Please check the URL.")
+
+# Rename the 'ISOYEAR' column to 'ISO_YEAR'
+df.columns = df.columns.str.replace('ISOYEAR', 'ISO_YEAR')
 
 # Strip leading and trailing whitespace from column names
 df.columns = df.columns.str.strip()
