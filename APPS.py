@@ -29,6 +29,7 @@ if response.status_code == 200:
     df = pd.read_csv(io.StringIO(filtered_text))
 else:
     st.error("Failed to download the data. Please check the URL.")
+    
 min_year = df['ISO_YEAR'].min()
 
 # Convert date columns to datetime format as usual
