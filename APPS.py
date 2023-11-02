@@ -17,7 +17,7 @@ def filter_and_fix_lines(text):
         else:
             # Handle or fix the problematic line as needed
             # For example, you can split the line and fill missing fields with empty values
-            fields.extend([''] * (41 - len(fields))  # Fill missing fields
+            fields.extend([''] * (41 - len(fields)))  # Fill missing fields
             filtered_lines.append(','.join(fields))
     return "\n".join(filtered_lines)
 
