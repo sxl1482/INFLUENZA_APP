@@ -17,24 +17,22 @@ def filter_and_fix_lines(text):
         else:
             # Handle or fix the problematic line as needed
             # For example, you can split the line and fill missing fields with empty values
-            fields.extend([''] * (41 - len(fields)))  # Fill missing fields
+            fields.extend([''] * (41 - len(fields))  # Fill missing fields
             filtered_lines.append(','.join(fields))
     return "\n".join(filtered_lines)
 
-# Download the CSV file
+# Download the CSV file and apply the filtering function
 raw_csv_url = 'https://github.com/Gill817/INFLUENZA_APP/blob/e9139f50b7829322aec9df7b55fbe7129052336c/VIW_FNT.csv'
 response = requests.get(raw_csv_url)
-
 if response.status_code == 200:
-    # Apply the filtering function to the downloaded text
     filtered_text = filter_and_fix_lines(response.text)
-    # Read the filtered text as a CSV into a DataFrame
     df = pd.read_csv(io.StringIO(filtered_text))
-    # Find the minimum value in the 'ISO_YEAR' column
-    min_year = df['ISO_YEAR'].min()
 else:
     st.error("Failed to download the data. Please check the URL.")
 
+# Strip leading and trailing whitespace from column names
+df.columns = df.columns.str.strip()
+min_year = df['ISO_YEAR'].min()
 # Convert date columns to datetime format as usual
 df['ISO_WEEKSTARTDATE'] = pd.to_datetime(df['ISO_WEEKSTARTDATE'])
 
