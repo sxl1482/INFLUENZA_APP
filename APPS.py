@@ -1,8 +1,7 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
-import requests  # Add this line to import the 'requests' module
-import io
+
 
 
 
@@ -10,7 +9,7 @@ import io
 raw_csv_url = 'https://github.com/Gill817/INFLUENZA_APP/blob/e9139f50b7829322aec9df7b55fbe7129052336c/VIW_FNT.csv'
 
 # Loading the data
-df = pd.read_csv(raw_csv_url,error_badlines=False)
+df = pd.read_csv(raw_csv_url, error_bad_lines=False)
 min_year = df['ISO_YEAR'].min()
 
 
