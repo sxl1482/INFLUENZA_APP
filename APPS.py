@@ -12,7 +12,7 @@ raw_csv_url = 'https://raw.githubusercontent.com/Gill817/INFLUENZA_APP/main/VIW_
 def print_bad_line(bad_line):
   print(bad_line)
 
-df = pd.read_csv(raw_csv_url, on_bad_lines=print_bad_line)
+df = pd.read_csv(raw_csv_url, on_bad_lines=print_bad_line,engine='python')
 
 min_year = df['ISO_YEAR'].min()
 
