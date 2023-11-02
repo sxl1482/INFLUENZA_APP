@@ -27,7 +27,7 @@ response = requests.get(raw_csv_url)
 
 if response.status_code == 200:
     # Apply the filtering function to the downloaded text
-    filtered_text = filter_and_fix_lines(response.text)
+    filtered_text = filter_and fix_lines(response.text)
     # Read the filtered text as a CSV into a DataFrame
     df = pd.read_csv(io.StringIO(filtered_text))
     # Find the minimum value in the 'ISO_YEAR' column
