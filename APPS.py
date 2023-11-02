@@ -8,31 +8,34 @@ import io
 
 # Loading the data
 def filter_and_fix_lines(text):
-    lines = text.split("\n")
-    filtered_lines = []
-    for line in lines:
-        fields = line.split(",")
-        if len(fields) == 41:  # Adjust the field count as needed
-            filtered_lines.append(line)
-        else:
-            # Handle or fix the problematic line as needed
-            # For example, you can split the line and fill missing fields with empty values
-            fields.extend([''] * (41 - len(fields)))  # Fill missing fields
-            filtered_lines.append(','.join(fields))
-    return "\n".join(filtered_lines)
+  lines = text.split("\n")
+  filtered_lines = []
+  for line in lines:
+    fields = line.split(",")
+    if len(fields) == 41:  # Adjust the field count as needed
+      filtered_lines.append(line)
+    else:
+      # Handle or fix the problematic line as needed
+      # For example, you can split the line and fill missing fields with empty values
+      fields.extend([''] * (41 - len(fields)))  # Fill missing fields
+      filtered_lines.append(','.join(fields))
+  return "\n".join(filtered_lines)
 
 # Download the CSV file and apply the filtering function
 raw_csv_url = 'https://github.com/Gill817/INFLUENZA_APP/blob/e9139f50b7829322aec9df7b55fbe7129052336c/VIW_FNT.csv'
 response = requests.get(raw_csv_url)
 if response.status_code == 200:
-    filtered_text = filter_and_fix_lines(response.text)
-    df = pd.read_csv(io.StringIO(filtered_text))
+  filtered_text = filter_and_fix_lines(response.text)
+  df = pd.read_csv(io.StringIO(filtered_text))
 else:
-    st.error("Failed to download the data. Please check the URL.")
+  st.error("Failed to download the data. Please check the URL.")
 
 # Strip leading and trailing whitespace from column names
 df.columns = df.columns.str.strip()
+
+# Get the minimum year
 min_year = df['ISO_YEAR'].min()
+
 # Convert date columns to datetime format as usual
 df['ISO_WEEKSTARTDATE'] = pd.to_datetime(df['ISO_WEEKSTARTDATE'])
 
