@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-raw_csv_url = 'https://github.com/Gill817/INFLUENZA_APP/blob/2ddb38ffc5f8af03962ec258360ade39a44fee7e/VIW_FNT%20(3).csv'
+raw_csv_url = 'https://github.com/Gill817/INFLUENZA_APP/blob/e9139f50b7829322aec9df7b55fbe7129052336c/VIW_FNT.csv'
 
 # Loading the data
 df = pd.read_csv(raw_csv_url)
