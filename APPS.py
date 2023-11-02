@@ -2,8 +2,10 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+raw_csv_url = 'https://github.com/Gill817/INFLUENZA_APP/raw/fd1372bcd9401b36c86eae979829343a90e768b1/VIW_FNT%20(3).csv'
+
 # Loading the data
-df = pd.read_csv(r'C:/Users/priya/Downloads/VIW_FNT.csv')
+df = pd.read_csv(raw_csv_url)
 min_year = df['ISO_YEAR'].min()
 
 # Convert date columns to datetime format as usual
