@@ -5,7 +5,11 @@ import streamlit as st
 raw_csv_url = 'https://github.com/Gill817/INFLUENZA_APP/blob/e9139f50b7829322aec9df7b55fbe7129052336c/VIW_FNT.csv'
 
 # Loading the data
-df = pd.read_csv(raw_csv_url)
+try:
+    df = pd.read_csv(raw_csv_url)
+except pd.errors.ParserError:
+    st.error("An error occurred while reading the data. Skipping the problematic lines.")
+    df = pd.read_csv(raw_csv_url, error_bad_lines=False)
 min_year = df['ISO_YEAR'].min()
 
 # Convert date columns to datetime format as usual
