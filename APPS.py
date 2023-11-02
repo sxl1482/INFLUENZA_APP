@@ -6,7 +6,7 @@ import streamlit as st
 
 
 # Loading the data
-raw_csv_url = 'https://github.com/Gill817/INFLUENZA_APP/blob/e9139f50b7829322aec9df7b55fbe7129052336c/VIW_FNT.csv'
+raw_csv_url = 'https://raw.githubusercontent.com/Gill817/INFLUENZA_APP/main/VIW_FNT.csv'
 
 # Loading the data
 df = pd.read_csv(raw_csv_url, error_bad_lines=False)
