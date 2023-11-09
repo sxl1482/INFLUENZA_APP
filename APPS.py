@@ -85,3 +85,4 @@ with col2:
         # Create a pie chart for the top 20 countries
         fig = px.pie(top_20_countries, names='COUNTRY_AREA_TERRITORY', values=selected_variant, title=f'Top 20 Countries for Influenza {selected_variant} in {selected_continent} ({selected_year})')
         st.plotly_chart(fig)
+st.write(" " * 10)
