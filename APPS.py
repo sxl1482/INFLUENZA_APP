@@ -2,33 +2,39 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+st.title("Monitoring Influenza Activity Worldwide")
 
+page_bg_img = f"""
+<style>
+  body {{
+    background-image: url("https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    background-size: 180%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: local;
+    opacity: 0.7; /* Set the opacity to make the background transparent */
+  }}
+</style>
+"""
 
+# Inject the CSS style into the Streamlit app
+st.markdown(page_bg_img, unsafe_allow_html=True)
 
 # Loading the data
-raw_csv_url = 'https://raw.githubusercontent.com/Gill817/INFLUENZA_APP/main/VIW_FNT.csv'
-
-# Loading the data
-def print_bad_line(bad_line):
-  print(bad_line)
-
-df = pd.read_csv(raw_csv_url, on_bad_lines=print_bad_line,engine='python')
-
+df = pd.read_csv(r'C:/Users/priya/Downloads/VIW_FNT.csv')
 min_year = df['ISO_YEAR'].min()
-
 
 # Convert date columns to datetime format as usual
 df['ISO_WEEKSTARTDATE'] = pd.to_datetime(df['ISO_WEEKSTARTDATE'])
 
-# Define the app layout
-st.title("Influenza Data Analysis")
+
 
 # Create two columns
-col1, col2 = st.columns(2)
+col1, col2 = st.columns([0.2, 0.6])
 
 # Place user options in the left column
 with col1:
-    plot_type = st.radio("Select Plot Type:", ['Time Series', 'Scatter Plot', 'Bar Plot', 'Pie Chart'])
+    plot_type = st.selectbox("Select Plot Type:", ['Time Series', 'Scatter Plot', 'Bar Plot', 'Pie Chart'])
     selected_year = st.selectbox("Select Year:", range(2023, min_year - 1, -1))
     selected_continent = st.selectbox("Select Continent:", df['WHOREGION'].unique())
     selected_variant = st.selectbox("Select Virus Variant:", ['AH1N12009', 'AH1', 'AH3', 'AH5', 'AH7N9', 'ANOTSUBTYPED', 'ANOTSUBTYPABLE', 'AOTHER_SUBTYPE', 'AOTHER_SUBTYPE_DETAILS', 'INF_A', 'BVIC_2DEL', 'BVIC_3DEL', 'BVIC_NODEL', 'BVIC_DELUNK', 'BYAM', 'BNOTDETERMINED', 'INF_B', 'INF_ALL', 'INF_NEGATIVE', 'ILI_ACTIVITY', 'ADENO', 'BOCA', 'HUMAN_CORONA', 'METAPNEUMO', 'PARAINFLUENZA', 'RHINO'])
