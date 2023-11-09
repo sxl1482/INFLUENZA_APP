@@ -21,7 +21,7 @@ page_bg_img = f"""
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
 # Loading the data
-df = pd.read_csv(r'C:/Users/priya/Downloads/VIW_FNT.csv')
+df = pd.read_csv(r'https://raw.githubusercontent.com/Gill817/INFLUENZA_APP/main/VIW_FNT.csv')
 min_year = df['ISO_YEAR'].min()
 
 # Convert date columns to datetime format as usual
