@@ -30,7 +30,7 @@ df['ISO_WEEKSTARTDATE'] = pd.to_datetime(df['ISO_WEEKSTARTDATE'])
 
 
 # Create two columns
-col1, col2 = st.columns([0.2, 0.6])
+col1, col2 = st.columns([0.30, 0.7])
 
 # Place user options in the left column
 with col1:
