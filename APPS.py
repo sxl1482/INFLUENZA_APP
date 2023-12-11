@@ -20,7 +20,7 @@ min_year = df['ISO_YEAR'].min()
 
 df['ISO_WEEKSTARTDATE'] = pd.to_datetime(df['ISO_WEEKSTARTDATE'])
 
-st.sidebar.title("Options")
+st.sidebar.title("Please select your Options and let's Visualize it! ")
 
 plot_type = st.sidebar.selectbox("Select Plot Type:", ['Time Series', 'Scatter Plot', 'Bar Plot', 'Pie Chart'])
 selected_start_year = st.sidebar.selectbox("Select Start Year:", range(2023, min_year - 1, -1))
